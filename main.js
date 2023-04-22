@@ -32,17 +32,31 @@ function fnSave(){
   var url = "http://1.234.198.25:9090/api/save";
   var memo = $("#memoArea").val();
   var params = "CODE=" + code + "&MEMO=" + memo ;
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          var response = JSON.parse(xhr.responseText);
-          alert("저장되었습니다.");
-      }
-      else{
-        alert("저장실패");
-      }
-  };
-  xhr.send(params);
-}
+  
+  // Promise 객체 생성
+  var promise = new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                resolve(xhr.responseText); // 성공
+            } else {
+                reject(xhr.status); // 실패
+            }
+        }
+    };
+    xhr.send(params);
+  });
 
+  // Promise 객체 처리
+  promise.then(function(response) {
+      // 응답 성공
+      var result = JSON.parse(response);
+      alert("저장되었습니다.");
+  }, function(status) {
+      // 응답 실패
+      alert("저장실패");
+  });
+}
