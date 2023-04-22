@@ -8,7 +8,7 @@ function login() {
     }
 
     var xhr = new XMLHttpRequest();
-    var url = "http://127.0.0.1:5000/api/login";
+    var url = "http://1.234.198.25:9090/api/login";
     var params = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
