@@ -22,7 +22,8 @@ function init() {
   xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
           var response = JSON.parse(xhr.responseText);
-            $("#memoArea").val(response.message)               
+          if(response.message != "")
+            {$("#memoArea").val(response.message)}
       }
   };
   xhr.send(params);
