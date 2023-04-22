@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 function init() {
   console.log(code)
-  var url = "https://1.234.198.25:9090/api/init";
+  var url = "http://1.234.198.25:9090/api/init";
   var params = "CODE=" + (code);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -29,7 +29,7 @@ function init() {
 }
 
 function fnSave(){
-  var url = "https://1.234.198.25:9090/api/save";
+  var url = "http://1.234.198.25:9090/api/save";
   var memo = $("#memoArea").val();
   var params = "CODE=" + code + "&MEMO=" + memo ;
   xhr.open("POST", url, true);
