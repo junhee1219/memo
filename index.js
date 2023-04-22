@@ -5,25 +5,7 @@ function login() {
         alert("코드를 입력하세요");
         return false;
     }
-
-    var xhr = new XMLHttpRequest();
-    var url = "http://1.234.198.25:9090/api/login";
-    var params = "CODE=" + encodeURIComponent(CODE);
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var response = JSON.parse(xhr.responseText);
-            alert(response)
-            alert(response.CODE)
-            if (response.result == "SUCCESS"){
-                window.location.href = "main.html";}
-            else{
-                console.log("FAIL")
-            }
-        }
-    };
-    xhr.send(params);
+    window.location.href = "main.html?CODE="+CODE;
 
     return true;
 }
