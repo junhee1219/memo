@@ -16,7 +16,7 @@ function init() {
   xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
           var response = JSON.parse(xhr.responseText);
-            $("#memo").text(response.message)               
+            $("#memoArea").val(response.message)               
       }
   };
   xhr.send(params);
@@ -24,7 +24,7 @@ function init() {
 
 function fnSave(){
   var url = "http://1.234.198.25:9090/api/save";
-  var memo = $("#memo").text();
+  var memo = $("#memoArea").val();
   var params = "CODE=" + code + "&MEMO=" + memo ;
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
