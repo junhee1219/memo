@@ -1,6 +1,9 @@
 var xhr = new XMLHttpRequest();
 var url = "http://1.234.198.25:9090/api/login";
-var code = "1234"
+var queryString = window.location.search;
+var data = new URLSearchParams(queryString);
+var code = data.get("CODE");
+
 
 $(document).ready(function() {
   init();
