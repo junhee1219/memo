@@ -9,7 +9,7 @@ function login() {
         CODE: CODE,
       };
     var queryString = new URLSearchParams(data).toString();
-    window.location.href = "main.html?CODE="+queryString;
+    window.location.href = "main.html?"+queryString;
 
     return true;
 }

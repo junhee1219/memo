@@ -1,5 +1,4 @@
 var xhr = new XMLHttpRequest();
-var url = "http://1.234.198.25:9090/api/login";
 var queryString = window.location.search;
 var data = new URLSearchParams(queryString);
 var code = data.get("CODE");
@@ -10,6 +9,7 @@ $(document).ready(function() {
 });
 
 function init() {
+  var url = "http://1.234.198.25:9090/api/init";
   var params = "CODE=" + (code);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -23,6 +23,7 @@ function init() {
 }
 
 function fnSave(){
+  var url = "http://1.234.198.25:9090/api/save";
   var memo = $("#memo").text();
   var params = "CODE=" + code + "&MEMO=" + memo ;
   xhr.open("POST", url, true);
