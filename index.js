@@ -1,21 +1,21 @@
 function login() {
-    var username = $("#username").val();
-    var password = $("#password").val();
+    var CODE = $("#CODE").val();
 
-    if (username === "" || password === "") {
-        alert("Please fill in all fields.");
+    if (CODE === "") {
+        alert("코드를 입력하세요");
         return false;
     }
 
     var xhr = new XMLHttpRequest();
-    var url = "http://1.234.198.25:9090/api/login";
-    var params = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
+    var url = "http://1.234.198.25:5000/api/login";
+    var params = "CODE=" + encodeURIComponent(CODE);
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var response = JSON.parse(xhr.responseText);
-            console.log(response)
+            alert(response)
+            alert(response.CODE)
             if (response.result == "SUCCESS"){
                 window.location.href = "main.html";}
             else{
