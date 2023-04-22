@@ -2,11 +2,15 @@ var xhr = new XMLHttpRequest();
 var queryString = window.location.search;
 var data = new URLSearchParams(queryString);
 var code = data.get("CODE");
+var timer = null;
 
+$('memoArea').on('keyup', function() {
+  if (timer) clearTimeout(timer);
+  timer = setTimeout(fnSave, 5000);
+});
 
 $(document).ready(function() {
   init();
-
 });
 
 function init() {
