@@ -6,9 +6,11 @@ var code = data.get("CODE");
 
 $(document).ready(function() {
   init();
+
 });
 
 function init() {
+  console.log(code)
   var url = "http://1.234.198.25:9090/api/init";
   var params = "CODE=" + (code);
   xhr.open("POST", url, true);
