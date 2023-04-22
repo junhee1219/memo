@@ -1,40 +1,38 @@
-const saveButton = document.getElementById("save-button");
-const memoTextarea = document.getElementById("memo");
+var xhr = new XMLHttpRequest();
+var url = "http://1.234.198.25:9090/api/login";
+var code = "1234"
 
 $(document).ready(function() {
   init();
 });
 
 function init() {
-  var xhr = new XMLHttpRequest();
-  var url = "http://1.234.198.25:9090/api/login";
-  var params = "CODE=" + encodeURIComponent(CODE);
-
+  var params = "CODE=" + (code);
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
           var response = JSON.parse(xhr.responseText);
-          if (response.result == "SUCCESS"){
-            memo.text(response.message)
-              }
-          else{
-              console.log("FAIL")
-          }
+            $("#memo").text(response.message)               
       }
   };
   xhr.send(params);
 }
 
-
-saveButton.addEventListener("click", function () {
-  const memo = memoTextarea.value;
-  localStorage.setItem("memo", memo);
-  alert("Your memo has been saved!");
-});
-
-const memo = localStorage.getItem("memo");
-if (memo !== null) {
-  memoTextarea.value = memo;
+function fnSave(){
+  var memo = $("#memo").text();
+  var params = "CODE=" + code + "&MEMO=" + memo ;
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          alert("저장되었습니다.");
+      }
+      else{
+        alert("저장실패");
+      }
+  };
+  xhr.send(params);
 }
 
